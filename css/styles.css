@@ -250,6 +250,7 @@ img {
   height: 112px;
   background-color: #f4f4fd;
   border-radius: 4px;
+  margin-bottom: 8px;
 }
 .features {
   padding-top: 120px;
@@ -333,7 +334,7 @@ img {
 /* CUSTOMERS ============================== */
 
 .customers {
-  padding-top: 130px;
+  padding-top: 120px;
   padding-bottom: 120px;
 }
 .customers-list {
