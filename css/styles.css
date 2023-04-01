@@ -5,8 +5,11 @@
   --accent-color: #404bbf;
   --footer-color: #e7e9fc;
   --team-bgcolor: #f4f4fd;
+  --customer-color: #8e8f99;
   --wite-color: #fff;
   --btn-hover: #404bbf;
+  --transition-dur-funk: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --bg-modal-color: #fcfcfc;
 }
 body {
   font-family: 'roboto', sans-serif;
@@ -121,7 +124,7 @@ img {
 
 .menu-list {
   font-weight: 500;
-  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--transition-dur-funk);
 }
 .menu-link:hover,
 .menu-link:focus {
@@ -158,7 +161,7 @@ img {
   text-decoration: none;
   color: var(--pr_brand-color);
   text-transform: uppercase;
-  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--transition-dur-funk);
 }
 .logo-header {
   margin-right: 76px;
@@ -226,7 +229,7 @@ img {
   color: var(--wite-color);
 }
 .hero-button {
-  color: #ffffff;
+  color: var(--wite-color);
   background: var(--pr_brand-color);
   padding: 16px 32px;
   margin-left: auto;
@@ -234,7 +237,7 @@ img {
   border: none;
   border-radius: 4px;
   min-width: 169px;
-  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--transition-dur-funk);
 }
 .hero-button:hover,
 .hero-button:focus {
@@ -248,7 +251,7 @@ img {
   justify-content: center;
   align-items: center;
   height: 112px;
-  background-color: #f4f4fd;
+  background-color: var(--team-bgcolor);
   border-radius: 4px;
   margin-bottom: 8px;
 }
@@ -320,8 +323,8 @@ img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #4d5ae5;
-  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--pr_brand-color);
+  transition: var(--transition-dur-funk);
 }
 .social-list-link:hover,
 .social-list-link:focus {
@@ -352,20 +355,17 @@ img {
   align-items: center;
   border: 1px solid #8e8f99;
   border-radius: 4px;
-  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--transition-dur-funk);
 }
 .customer-icon {
   fill: #8e8f99;
-  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--transition-dur-funk);
 }
 .customer-link:is(:hover, :focus) .customer-icon {
-  fill: #404bbf;
+  fill: var(--btn-hover);
 }
-/* .customer-link:hover .customer-icon {
-  fill: #404bbf;
-} */
 .customer-link:is(:hover, :focus) {
-  border-color: #404bbf;
+  border-color: var(--btn-hover);
 }
 
 /*  FOOTER ================================================= */
@@ -411,7 +411,7 @@ img {
   background-color: rgba(255, 255, 255, 0.1);
   justify-content: center;
   align-items: center;
-  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--transition-dur-funk);
 }
 .social-media-link:hover,
 .social-media-link:focus {
@@ -423,6 +423,7 @@ img {
   padding-top: 96px;
   padding-bottom: 120px;
 }
+/* =============FILTER===================== */
 .filter-item:not(:last-child) {
   margin-right: 24px;
 }
@@ -434,7 +435,7 @@ img {
   border: none;
   color: var(--pr_brand-color);
   background-color: var(--team-bgcolor);
-  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--transition-dur-funk);
 }
 .filter-button:hover,
 .filter-button:focus,
@@ -451,23 +452,99 @@ img {
   justify-content: center;
   margin-bottom: 72px;
 }
+/* ==================PROJECTS================= */
 .project-list {
   display: flex;
   flex-wrap: wrap;
   gap: 48px 24px;
+}
+.overlay {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  color: var(--team-bgcolor);
+  background-color: var(--pr_brand-color);
+  padding: 40px 32px;
+  position: absolute;
+  transform: translate(0, 100%);
+  transition: transform var(--transition-dur-funk);
+}
+.project-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.project-link {
+  display: block;
 }
 .project-description {
   padding: 32px 16px 32px 16px;
   border: solid;
   border-top: 0;
   border-width: 1px;
-  border-color: #e7e9fc;
+  border-color: var(--footer-color);
 }
 .project-item {
   flex-basis: calc((100% - 24 * 2) / 3);
-  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--transition-dur-funk);
 }
 .project-item:hover {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+.project-item:hover .overlay,
+.project-link:focus .overlay {
+  transform: translate(0, 0);
+}
+/* ======================MODAL=================== */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 47, 66, 0.4);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility var(--transition-dur-funk);
+}
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 408px;
+  height: 576px;
+  border-radius: 4px;
+  background-color: var(--bg-modal-color);
+}
+.modal-close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--footer-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  transition: background-color var(--transition-dur-funk);
+}
+.modal-close-btn-icon {
+  transition: fill var(--transition-dur-funk);
+}
+.modal-close-btn:is(:hover, :focus) {
+  background-color: var(--accent-color);
+}
+.modal-close-btn:is(:hover, :focus) .modal-close-btn-icon {
+  fill: #fff;
 }
